@@ -128,11 +128,7 @@ export default {
         admin_lname: null,
         admin_email: null,
         admin_password: null,
-        role_id: [1],
-        user_id: 1232,
       },
-      token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjY3LCJpYXQiOjE2MTc0NDY0NTQsImV4cCI6MTY0ODk4MjQ1NH0.SGU2SERkRuk8ewp_tunv7CFLiSmbjHi5xv4DI72nL-M",
     };
   },
   mounted() {
@@ -141,7 +137,7 @@ export default {
   methods: {
     getAdmins() {
       this.$axios
-        .$get("admins", {
+        .$get("user", {
           params: {
             page: this.currentPage,
           },
@@ -169,7 +165,7 @@ export default {
       )
         .then(() => {
           this.$axios
-            .$delete(`admin/${id}`, {
+            .$delete(`user/${id}`, {
               headers: {
                 Authorization: "Bearer " + this.token,
               },
@@ -206,10 +202,7 @@ export default {
       this.formType = "edit";
       this.adminId=id;
       this.$axios
-        .$get(`admin/${id}`, {
-          params: {
-            page: this.currentPage,
-          },
+        .$get(`user/${id}`, {
           headers: {
             Authorization: "Bearer " + this.token,
           },
@@ -224,7 +217,7 @@ export default {
     },
     createAdmin() {
       this.$axios
-        .$post("admin",this.adminData, {
+        .$post("user",this.adminData, {
           headers: {
             Authorization: "Bearer " + this.token,
           },
@@ -243,7 +236,7 @@ export default {
     },
     updateAdmin() {
       this.$axios
-        .$patch(`admin/${this.adminId}`,this.adminData, {
+        .$patch(`user/${this.adminId}`,this.adminData, {
           headers: {
             Authorization: "Bearer " + this.token,
           },
